@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  suricata:
+    build: suricata
+    command: suricata -i eth1
+    cap_add:
+      - NET_ADMIN
+      - SYS_NICE
+    volumes:
+      - /var/log/suricata:/var/log/suricata:z
+      - "./tools:/tools:z"
+      - "./pcaps:/pcaps:z"
+    working_dir: /tools
+    networks:
+      - default
+      - private
+  evebox:
+    image: jasonish/evebox:master
+    volumes_from:
+      - suricata:z
+    command: evebox server --database sqlite -D /tmp --input /var/log/suricata/eve.json
+    ports:
+      - "5636:5636"
+
+networks:
+  private:
+    external: false
