@@ -17,6 +17,9 @@ First clone this git repository:
 git clone https://github.com/jasonish/experimental-suricata-training
 ```
 
+> **_NOTE:__ Depending on how you installed docker the command might
+> be `docker-compose` or `docker compose`.
+
 Then docker-compose up:
 
 ```
