@@ -19,7 +19,7 @@ services:
     image: jasonish/evebox:master
     volumes_from:
       - suricata:z
-    command: evebox server --database sqlite -D /tmp --input /var/log/suricata/eve.json
+    command: evebox server --database sqlite -D /tmp --input /var/log/suricata/eve.json --no-auth --no-tls
     ports:
       - "5636:5636"
 
